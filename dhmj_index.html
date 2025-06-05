@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Realgrün Layout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #22243B;
+    }
+    
+    
+
+    #wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header.header {
+      text-align: center;
+      transition: top 0.3s ease;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 9;
+      font-size: 1rem;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #6674FF;
+      height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00B9FF;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 43px);
+    }
+
+    .left-panel {
+      width: 40%;
+      background-color: #22243B;
+      padding: 20px;
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
+
+    .left-panel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .right-panel {
+      width: 60%;
+      background-color: #22243B;
+      padding: 20px;
+      overflow-y: scroll;
+    }
+
+    .emph {
+  font-weight: bold; 
+}
+
+    .text-content p {
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre;
+      color: #00B9FF;
+    }
+
+    .text-content .highlight {
+      color: #00FFFF;
+      font-weight: bold;
+    }
+    .category-title {
+     font-size: 12px;
+     font-weight: lighter;
+     margin-bottom: 10px;
+     color: #00FFFF;
+    }
+    .image-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  max-height: calc(100vh - 43px); 
+  overflow-y: auto;
+  padding-right: 5px; 
+  scrollbar-width: thin;
+  scrollbar-width: none; !important;         
+  -ms-overflow-style: none;       
+}
+
+.image-column::-webkit-scrollbar {
+  display: none;                  
+}
+
+.image-column::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+    .image-grid {
+      display: flex;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+
+    .image-grid::before,
+    .image-grid::after,
+    .image-grid .grid-divider {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0.5px;
+      background-color: #00FFFF;
+    }
+
+    .image-grid::before {
+      left: 24%;
+    }
+    .image-grid::after {
+      left: 75%;
+    }
+    .grid-divider {
+      left: 50%;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-item p {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .keyword-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.keyword {
+  display: inline-block;
+  background-color: #00F08C;
+  color: #22243B;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+    .floating-circle-btn {
+  position: fixed;
+  right: 20px;
+  top: 53px; 
+  width: 35px;
+  height: 35px;
+  background-color: #6674FF;
+  border: 1px solid #6674FF;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 10px;
+  text-align: center;
+  line-height: 35px;
+  text-decoration: none;
+  z-index: 9999;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+  .image-item p {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: lighter;
+  color: #FFFFFF;
+  }
+
+ .image-item p.open {
+  max-height: 200px; 
+  opacity: 1;
+  margin-top: 5px;
+}
+
+.floating-circle-btn:hover {
+  background-color: #00FFFF;
+  color: black;
+}
+    .left-panel,
+    .right-panel,
+    .left-panel * ,
+    .right-panel * {
+    cursor: url('cursor.png') 16 16, auto !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <header class="header">
+      ✺대한민주✺
+    </header>
+    <div class="container">
+      <div class="left-panel">
+        <div class="text-content">
+          <p>대한민주</br> </p>
+          <p>대한 민주운동의 발자취 </p>
+          <p class="highlight">                ✥사전 유부 오육✥</p>
+          <p><span class="emph">사</span> = 4.19혁명: 이승만 정권의 부정선거에 분노한 학생과 시민들이 거리로 나서며 </br>                       독재를 무너뜨린 최초의 시민봉기</p>
+<p><span class="emph">    전</span> = 전태일 분신: 노동자의 비인간적 현실을 고발하며 “근로기준법을 지켜라!”</br>                               외친 청년 노동자의 죽음이 노동운동의 불을 지핌</p>
+<p><span class="emph">         유</span> = 유신헌법: 박정희가 종신집권을 위해 국민투표로 통과시킨 독재헌법, </br>                               권력의 전면적 구조화 </p>
+<p><span class="emph">                부</span> = 부마항쟁: 유신 말기, 부산과 마산에서 대학생·시민들이 들고일어난 </br>                                       대규모 도시항쟁. 이는 곧 박정희 체제 붕괴로 이어졌다.</p>
+<p><span class="emph">                       오</span> = 5.18광주민주화운동: 전두환 신군부의 권력 찬탈에 저항한 </br>                              광주시민들의 항거. 계엄군의 무력 진압으로 참극 발생</br></p>
+<p><span class="emph">                  육</span> = 6월 민주항쟁: “호헌 철폐, 독재 타도” 외침 아래 </br>                         전국적 시민 항쟁이 폭발하며 대통령 직선제 쟁취</br> </br> </p>
+
+<p class="highlight">4.19 혁명</p>
+<p>1960년 3·15 부정선거에 항의한 마산 시위와 서울 시민봉기가 확산되며</br>이승만 하야를 이끌어냈으며 학생과 시민이 결합한 최초의 대중 민주화 운동으로 평가된다.</br> </p>
+  <p class="highlight">전태일 분신</p>
+<p>평화시장 봉제노동자였던 전태일은 1970년 “근로기준법을 지켜라!”를 외치며 분신.</br>이후 노동운동과 민중운동에 도덕적·상징적 불꽃을 붙였다.</br> </p>
+  <p class="highlight">유신헌법</p>
+<p>박정희가 국회를 해산하고 통일주체국민회의를 통해 대통령 중임 제한 폐지.</br> 유신체제라는 강압적 통치가 시작된 정치적 분수령.</br> </p>
+  <p class="highlight">부마 항쟁</p>
+<p>1979년 10월, 부산과 마산에서 고조된 반유신 시위. </br>시민과 대학생이 함께 거리에 나섰고, 유신 붕괴의 직접적 계기가 되었다.</br> </p>
+  <p class="highlight">5.18 광주민주화운동</p>
+<p>1980년 5월, 계엄 확대에 반발한 광주시민들이 신군부에 맞선 항쟁. </br>수많은 민간인 학살과 함께 민주주의의 피로 쓴 서사로 남았다.</br> </p>
+  <p class="highlight">6월 민주 항쟁</p>
+<p>박종철 고문치사 사건 → 이한열 피격 → 호헌 철폐 외침으로 폭발. </br>국민 항거로 대통령 직선제 쟁취라는 중대한 제도 변화를 실현하였다.</br> </br> </p>
+
+<p>작은 열쇳말</p>
+          <div class="keyword-group">
+  <span class="keyword">시위</span>
+  <span class="keyword">하야</span>
+  <span class="keyword">직선제</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">전태일</span>
+  <span class="keyword">근로기준법</span>
+  <span class="keyword">평화시장</span>
+  <span class="keyword">노동권</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">통일주체국민회의</span>
+  <span class="keyword">박정희</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">계엄령</span>
+  <span class="keyword">민간인 학살</span>
+  <span class="keyword">계엄군</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">5.18기록관</span>
+  <span class="keyword">진상규명</span>
+  <span class="keyword">1.4 후퇴</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">"호언철폐 독재타도"</span>
+  <span class="keyword">"책상을 탁! 치니 억! 하고"</span>
+</div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <div class="image-grid">
+          <div class="grid-divider"></div>
+          <div class="image-column">
+          <h3 class="category-title">사진</h3>
+          <div class="image-item"><img src="dhmj.p1.jpg" alt="Projektname 2"><p>Projektname 2</p></div>
+          <div class="image-item"><img src="dhmj.p2.jpg" alt="Projektname 2"><p>Projektname 2</p></div>
+          <div class="image-item"><img src="dhmj.p3.jpg" alt="Projektname 3"><p>Projektname 3</p></div>
+          <div class="image-item"><img src="dhmj.p4.jpg" alt="Projektname 1"><p>Projektname 4</p></div>
+          <div class="image-item"><img src="dhmj.p5.jpg" alt="Projektname 2"><p>
+          Projektname 5</p></div>
+          <div class="image-item"><img src="dhmj.p6.jpg" alt="Projektname 1"><p>Projektname 4</p></div>
+          <div class="image-item"><img src="dhmj.p7.jpg" alt="Projektname 3"><p>Projektname 3</p></div>
+          <div class="image-item"><img src="dhmj.p8.jpg" alt="Projektname 1"><p>Projektname 4</p></div>
+          <div class="image-item"><img src="dhmj.p9.jpg" alt="Projektname 2"><p>
+          Projektname 5</p></div>
+          <div class="image-item"><img src="dhmj.p10.jpg" alt="Projektname 1"><p>Projektname 4</p></div>
+          </div>
+
+       <div class="image-column">
+         <h3 class="category-title">문학</h3>
+          <div class="image-item"><img src="dhmj.y1.jpg" alt="Projektname 6"><p>Projektname 6</p></div>
+          <div class="image-item"><img src="dhmj.y2.jpg" alt="Projektname 7"><p>Projektname 7</p></div>
+      </div>
+       <div class="image-column">
+         <h3 class="category-title">예술</h3>
+          <div class="image-item"><img src="dhmj.a1.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhmj.a2.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhmj.a3.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhmj.a4.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+      </div>
+      <div class="image-column">
+         <h3 class="category-title">공간</h3>
+          <div class="image-item"><img src="dhmj.m1.jpg" alt="Projektname 6"><p>Projektname 9</p></div>
+          <div class="image-item"><img src="dhmj.m2.jpg" alt="Projektname 7"><p>Projektname 10</p></div>
+          <div class="image-item"><img src="dhmj.m3.jpg" alt="Projektname 8"><p>Projektname 11</p></div>
+          <div class="image-item"><img src="dhmj.m4.jpg" alt="Projektname 8"><p>Projektname 11</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <a href="index.html" class="floating-circle-btn" title="홈으로 이동">🡠</a>
+ <script>
+  // 설명 펼치고 접기
+  document.querySelectorAll('.image-item').forEach(item => {
+    const desc = item.querySelector('p');
+
+    item.addEventListener('click', () => {
+      const isOpen = desc.classList.contains('open');
+
+      if (!isOpen) {
+        desc.classList.add('open');
+        desc.style.maxHeight = desc.scrollHeight + "px";
+      } else {
+        desc.style.maxHeight = desc.scrollHeight + "px";
+        requestAnimationFrame(() => {
+          desc.style.maxHeight = "0px";
+          desc.classList.remove('open');
+        });
+      }
+    });
+  });
+
+  // 스크롤 시 닫기
+  let scrollTimeout;
+  const scrollTarget = document.querySelector('.right-panel');
+
+  if (scrollTarget) {
+    scrollTarget.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.querySelectorAll('.image-item p.open').forEach(desc => {
+          desc.style.maxHeight = desc.scrollHeight + "px"; // 현재 높이 재설정
+          requestAnimationFrame(() => {
+            desc.style.maxHeight = "0px";
+            desc.classList.remove('open');
+          });
+        });
+      }, 50);
+    });
+  }
+</script>
+</body>
+</html>
