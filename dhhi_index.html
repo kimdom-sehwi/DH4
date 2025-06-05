@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>Realgrün Layout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #22243B;
+    }
+    
+    
+
+    #wrapper {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+    }
+
+    header.header {
+      text-align: center;
+      transition: top 0.3s ease;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 9;
+      font-size: 1rem;
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid #6674FF;
+      height: 43px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #00B9FF;
+    }
+
+    .container {
+      display: flex;
+      flex: 1;
+      height: calc(100vh - 43px);
+    }
+
+    .left-panel {
+      width: 40%;
+      background-color: #22243B;
+      padding: 20px;
+      overflow-y: scroll;
+      scrollbar-width: none;
+    }
+
+    .left-panel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .right-panel {
+      width: 60%;
+      background-color: #22243B;
+      padding: 20px;
+      overflow-y: scroll;
+    }
+
+    .emph {
+  font-weight: bold; 
+}
+
+    .text-content p {
+      margin-bottom: 10px;
+      font-size: 16px;
+      line-height: 1.6;
+      white-space: pre;
+      color: #00B9FF;
+    }
+
+    .text-content .highlight {
+      color: #00FFFF;
+      font-weight: bold;
+    }
+    .category-title {
+     font-size: 12px;
+     font-weight: lighter;
+     margin-bottom: 10px;
+     color: #00FFFF;
+    }
+    .image-column {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1;
+  max-height: calc(100vh - 43px); 
+  overflow-y: auto;
+  padding-right: 5px; 
+  scrollbar-width: thin;
+  scrollbar-width: none; !important;         
+  -ms-overflow-style: none;       
+}
+
+.image-column::-webkit-scrollbar {
+  display: none;                  
+}
+
+.image-column::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
+
+    .image-grid {
+      display: flex;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+
+    .image-grid::before,
+    .image-grid::after,
+    .image-grid .grid-divider {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 0.5px;
+      background-color: #00FFFF;
+    }
+
+    .image-grid::before {
+      left: 24%;
+    }
+    .image-grid::after {
+      left: 75%;
+    }
+    .grid-divider {
+      left: 50%;
+    }
+
+    .image-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .image-item p {
+      margin-top: 5px;
+      font-size: 14px;
+    }
+    .keyword-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 20px 0;
+}
+
+.keyword {
+  display: inline-block;
+  background-color: #00F08C;
+  color: #22243B;
+  padding: 6px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+    .floating-circle-btn {
+  position: fixed;
+  right: 20px;
+  top: 53px; 
+  width: 35px;
+  height: 35px;
+  background-color: #6674FF;
+  border: 1px solid #6674FF;
+  border-radius: 50%;
+  color: #ffffff;
+  font-size: 10px;
+  text-align: center;
+  line-height: 35px;
+  text-decoration: none;
+  z-index: 9999;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: all 0.3s ease;
+}
+  .image-item p {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  margin-top: 0;
+  font-size: 12px;
+  font-weight: lighter;
+  color: #FFFFFF;
+  }
+
+ .image-item p.open {
+  max-height: 200px; 
+  opacity: 1;
+  margin-top: 5px;
+}
+
+.floating-circle-btn:hover {
+  background-color: #00FFFF;
+  color: black;
+}
+    .left-panel,
+    .right-panel,
+    .left-panel * ,
+    .right-panel * {
+    cursor: url('cursor.png') 16 16, auto !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="wrapper">
+    <header class="header">
+      ✺대한항일✺
+    </header>
+    <div class="container">
+      <div class="left-panel">
+        <div class="text-content">
+          <p>대한항일</br> </p>
+          <p>의병 활동과 식민 저항 운동의 기록 </p>
+          <p class="highlight">                ✥지천쌍성전자세봉흥겨워얼른가✥</p>
+          <p><span class="emph">지천</span> = 지청천: 한국독립군 총사령관, 무장 독립운동의 중심 인물</p>
+<p><span class="emph">    쌍성</span> = 쌍성보 전투: 한국독립군이 일본군을 상대로 대승을 거둔 대표 전투</p>
+<p><span class="emph">         전자</span> = 대전자령 전투: 독립군이 일본군을 연속 타격한 전투</p>
+<p><span class="emph">                세봉</span> = 양세봉: 조선혁명군 사령관, 중국인 부대와 연합해 항일전을 벌임</p>
+<p><span class="emph">        흥겨워</span> = 흥경성 전투: 양세봉이 지휘한 대표 전투, 한중 연합 항일전의 상징</p>
+<p><span class="emph">얼른가</span> = 영릉가 전투: 독립군이 일본군을 재격파한 전투, 독립군 전성기의 마지막 승리中1</br> </br> </p>
+
+<p class="highlight">지청천</p>
+<p>청산리 전투 이후 만주에서 항일 무장투쟁을 이어간 한국독립군의 총사령관. </br>민족주의계 무장세력을 이끌며 대한민국 임시정부의 군사력을 실질적으로 지탱했다.</br> </p>
+  <p class="highlight">쌍성보 전투</p>
+<p>1932년.</br>지청천이 이끄는 한국독립군이 중국 관동군 주둔 일본군을 상대로 대승을 거둔 전투. </br>독립군의 전투력이 드러난 상징적 전투로 기록된다.</br> </p>
+  <p class="highlight">대전자령 전투</p>
+<p>쌍성보 전투 직후 벌어진 연속 작전. </br>일본군의 보복 공세를 효과적으로 방어하고, 독립군의 기세를 이어갔다.</br> 무장투쟁의 연속성과 전략적 우위를 보여주었다.</br> </p>
+  <p class="highlight">양세봉</p>
+<p>사회주의계 무장투쟁을 이끈 조선혁명군 사령관. </br>중국인 부대와 연합하여 항일 공동전선을 형성했고, </br>단순한 민족투쟁을 넘은 국제 연대의 전형을 보여주었다.</br> </p>
+  <p class="highlight">흥경성 전투</p>
+<p>양세봉이 주도한 대표적인 전투로, 조선혁명군과 중국군이 협력하여 일본군을 대파했다. </br>한중연합 항일 투쟁의 성과를 상징하는 사건으로 평가된다.</br></p>
+  <p class="highlight">영릉가 전투</p>
+<p>1933년.</br> 한국독립군이 일본군과 다시 한 번 맞서 승리를 거둔 전투. </br>이 무렵 독립군의 활약은 정점에 도달했으며, </br>이후 일본의 대대적인 탄압으로 기세가 약화된다.</br> </br> </p>
+
+<p>작은 열쇳말</p>
+          <div class="keyword-group">
+  <span class="keyword">지청천</span>
+  <span class="keyword">한국독립군</span>
+  <span class="keyword">임정 직할부대</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">만주전선</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">연속공격</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">양세봉</span>
+  <span class="keyword">조선혁명군</span>
+  <span class="keyword">한중연합전선</span>
+</div>
+<div class="keyword-group">
+  <span class="keyword">협력투쟁</span>
+  <span class="keyword">무장항일</span>
+</div>
+        </div>
+      </div>
+      <div class="right-panel">
+        <div class="image-grid">
+          <div class="grid-divider"></div>
+          <div class="image-column">
+          <h3 class="category-title">사진</h3>
+          <div class="image-item"><img src="dhhi.p1.jpg" alt="Projektname 1">
+            <p>이 해파리는 실제로 북태평양 해역에서 촬영된 것입니다. 크기는 약 50cm입니다.</p>
+          </div>
+          <div class="image-item"><img src="dhhi.p2.jpg" alt="Projektname 2"><p>Projektname 2</p></div>
+          <div class="image-item"><img src="dhhi.jpg" alt="Projektname 2"><p>Projektname 2</p></div>
+          <div class="image-item"><img src="dhhi.p3.png" alt="Projektname 3"><p>Projektname 3</p></div>
+          <div class="image-item"><img src="dhhi.p4.png" alt="Projektname 1"><p>Projektname 4</p></div>
+          <div class="image-item"><img src="dhhi.p5.jpg" alt="Projektname 2"><p>
+          Projektname 5</p></div>
+          </div>
+
+       <div class="image-column">
+         <h3 class="category-title">문학</h3>
+          <div class="image-item"><img src="dhhi.y1.jpg" alt="Projektname 6"><p>Projektname 6</p></div>
+          <div class="image-item"><img src="dhhi.y2.jpg" alt="Projektname 7"><p>Projektname 7</p></div>
+          <div class="image-item"><img src="dhhi.y3.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhhi.y4.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhhi.y5.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+      </div>
+       <div class="image-column">
+         <h3 class="category-title">예술</h3>
+          <div class="image-item"><img src="dhhi.a1.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhhi.a2.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhhi.a3.jpg" alt="Projektname 8"><p>Projektname 8</p></div>
+          <div class="image-item"><img src="dhhi.a4.png" alt="Projektname 8"><p>Projektname 8</p></div>
+      </div>
+      <div class="image-column">
+         <h3 class="category-title">공간</h3>
+          <div class="image-item"><img src="dhhi.m1.jpg" alt="Projektname 6"><p>Projektname 9</p></div>
+          <div class="image-item"><img src="dhhi.m2.jpg" alt="Projektname 7"><p>Projektname 10</p></div>
+          <div class="image-item"><img src="dhhi.m3.jpg" alt="Projektname 8"><p>Projektname 11</p></div>
+          <div class="image-item"><img src="dhhi.m4.jpg" alt="Projektname 8"><p>Projektname 11</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ <a href="index.html" class="floating-circle-btn" title="홈으로 이동">🡠</a>
+ <script>
+  // 설명 펼치고 접기
+  document.querySelectorAll('.image-item').forEach(item => {
+    const desc = item.querySelector('p');
+
+    item.addEventListener('click', () => {
+      const isOpen = desc.classList.contains('open');
+
+      if (!isOpen) {
+        desc.classList.add('open');
+        desc.style.maxHeight = desc.scrollHeight + "px";
+      } else {
+        desc.style.maxHeight = desc.scrollHeight + "px";
+        requestAnimationFrame(() => {
+          desc.style.maxHeight = "0px";
+          desc.classList.remove('open');
+        });
+      }
+    });
+  });
+
+  // 스크롤 시 닫기
+  let scrollTimeout;
+  const scrollTarget = document.querySelector('.right-panel');
+
+  if (scrollTarget) {
+    scrollTarget.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        document.querySelectorAll('.image-item p.open').forEach(desc => {
+          desc.style.maxHeight = desc.scrollHeight + "px"; // 현재 높이 재설정
+          requestAnimationFrame(() => {
+            desc.style.maxHeight = "0px";
+            desc.classList.remove('open');
+          });
+        });
+      }, 50);
+    });
+  }
+</script>
+</body>
+</html>
